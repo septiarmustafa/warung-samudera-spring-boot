@@ -18,14 +18,3 @@ public class BranchResponse {
     private String phoneNumber;
 }
 
-//{
-//        "errors": "string",
-//        "data": {
-//        "branchId": "string",
-//        "branchCode": "string",
-//        "branchName": "string",
-//        "address": "string",
-//        "phoneNumber": "string"
-//        },
-//        "paging": null
-//        }

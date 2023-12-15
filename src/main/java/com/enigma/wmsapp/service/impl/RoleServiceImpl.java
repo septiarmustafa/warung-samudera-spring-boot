@@ -14,9 +14,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getOrSave(Role role) {
         Role optionalRole = roleRepository.findByName(role.getName());
-        // jika ada di DB di get
         if (optionalRole != null) return optionalRole;
-        // jika tidak ada maka create new
         return roleRepository.save(role);
     }
 }

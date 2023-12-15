@@ -1,7 +1,6 @@
 package com.enigma.wmsapp.dto.response;
 
 
-import com.enigma.wmsapp.entity.ProductPrice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,22 +19,3 @@ public class ProductResponse {
     private Integer stock;
     private BranchResponse branchId;
 }
-
-//{
-//        "errors": "string",
-//        "data": {
-//        "productId": "string",
-//        "productPriceId": "string",
-//        "productCode": "string",
-//        "productName": "string",
-//        "price": "big decimal",
-//        "branch": {
-//        "branchId": "string",
-//        "branchCode": "string",
-//        "branchName": "string",
-//        "address": "string",
-//        "phoneNumber": "string"
-//        }
-//        },
-//        "paging": null
-//        }

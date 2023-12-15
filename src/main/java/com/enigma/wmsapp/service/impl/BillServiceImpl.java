@@ -1,6 +1,5 @@
 package com.enigma.wmsapp.service.impl;
 
-import com.enigma.wmsapp.constant.ETransactionType;
 import com.enigma.wmsapp.dto.request.BillRequest;
 import com.enigma.wmsapp.dto.response.BillDetailResponse;
 import com.enigma.wmsapp.dto.response.BillResponse;
