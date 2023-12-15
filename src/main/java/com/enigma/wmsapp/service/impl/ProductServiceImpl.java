@@ -158,16 +158,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductResponse> getAllByNameOrPrice(String name, Long maxPrice, Integer page, Integer size) {
+    public Page<ProductResponse> getAllByNameOrPrice(String productName, String productCode, Long maxPrice, Long minPrice, Integer page, Integer size) {
         Specification<Product> specification = (root, query, criteriaBuilder) -> {
             Join<Product, ProductPrice> productPriceJoin = root.join("productPrice");
 
             List<Predicate> predicates = new ArrayList<>();
-            if (name != null) {
-                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%" ));
+            if (productName != null) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("productName")), "%" + productName.toLowerCase() + "%" ));
+            }
+            if (productCode != null) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("productCode")), "%" + productCode.toLowerCase() + "%" ));
             }
             if (maxPrice != null) {
                 predicates.add(criteriaBuilder.lessThanOrEqualTo(productPriceJoin.get("price"), maxPrice));
+            }
+            if (minPrice != null) {
+                predicates.add(criteriaBuilder.greaterThanOrEqualTo(productPriceJoin.get("price"), minPrice));
             }
             return query.where(predicates.toArray(new Predicate[]{})).getRestriction();
         };

@@ -18,5 +18,5 @@ public interface ProductService {
 
     ProductResponse createProductAndProductPrice (ProductRequest productRequest);
 
-    Page<ProductResponse> getAllByNameOrPrice (String name, Long maxPrice, Integer page, Integer size);
+    Page<ProductResponse> getAllByNameOrPrice (String productName, String productCode, Long maxPrice, Long minPrice, Integer page, Integer size);
 }

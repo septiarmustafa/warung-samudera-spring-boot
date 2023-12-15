@@ -45,12 +45,14 @@ public class ProductController {
 
     @GetMapping(value = AppPath.PAGE)
     public  ResponseEntity<?> getAllProductPage(
-            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "productName", required = false) String productName,
+            @RequestParam(name = "productCode", required = false) String productCode,
             @RequestParam(name = "maxPrice", required = false) Long maxPrice,
+            @RequestParam(name = "minPrice", required = false) Long minPrice,
             @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
             @RequestParam(name = "size", required = false, defaultValue = "5") Integer size
     ){
-        Page<ProductResponse> productResponses = productService.getAllByNameOrPrice(name, maxPrice, page,size);
+        Page<ProductResponse> productResponses = productService.getAllByNameOrPrice(productName, productCode, maxPrice, minPrice, page,size);
         PagingResponse pagingResponse = PagingResponse.builder()
                 .currentPage(page)
                 .totalPage(productResponses.getTotalPages())
