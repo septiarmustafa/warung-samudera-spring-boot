@@ -15,8 +15,9 @@ public class ProductResponse {
     private String productPriceId;
     private String productCode;
     private String productName;
-    private String price;
-    private String branchId;
+    private Long price;
+    private Integer stock;
+    private BranchResponse branchId;
 }
 
 //{
