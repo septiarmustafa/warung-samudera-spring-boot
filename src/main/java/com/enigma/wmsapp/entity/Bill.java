@@ -25,7 +25,7 @@ public class Bill {
     @Column(name = "trans_date", nullable = false)
     private LocalDateTime transDate;
 
-    @Column(name = "transaction_type", nullable = false, length = 90)
+    @Column(name = "transaction_type", nullable = false)
     private ETransactionType transactionType;
 
     @OneToMany(mappedBy = "bill", cascade = CascadeType.PERSIST)

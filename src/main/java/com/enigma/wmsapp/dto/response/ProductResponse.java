@@ -1,6 +1,7 @@
 package com.enigma.wmsapp.dto.response;
 
 
+import com.enigma.wmsapp.entity.ProductPrice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
