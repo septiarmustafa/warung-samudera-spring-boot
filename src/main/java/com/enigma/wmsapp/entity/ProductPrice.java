@@ -35,6 +35,4 @@ public class ProductPrice {
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
-
-
 }

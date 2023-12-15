@@ -2,13 +2,13 @@ package com.enigma.wmsapp.controller;
 
 import com.enigma.wmsapp.constant.AppPath;
 import com.enigma.wmsapp.dto.request.ProductRequest;
-import com.enigma.wmsapp.dto.response.BranchResponse;
 import com.enigma.wmsapp.dto.response.CommonResponse;
+import com.enigma.wmsapp.dto.response.PagingResponse;
 import com.enigma.wmsapp.dto.response.ProductResponse;
-import com.enigma.wmsapp.entity.Branch;
 import com.enigma.wmsapp.entity.Product;
 import com.enigma.wmsapp.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +43,27 @@ public class ProductController {
                         .data(productResponse).build());
     }
 
-    // get product by branch
+    @GetMapping(value = AppPath.PAGE)
+    public  ResponseEntity<?> getAllProductPage(
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "maxPrice", required = false) Long maxPrice,
+            @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+            @RequestParam(name = "size", required = false, defaultValue = "5") Integer size
+    ){
+        Page<ProductResponse> productResponses = productService.getAllByNameOrPrice(name, maxPrice, page,size);
+        PagingResponse pagingResponse = PagingResponse.builder()
+                .currentPage(page)
+                .totalPage(productResponses.getTotalPages())
+                .size(size)
+                .build();
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(CommonResponse.builder()
+                        .statusCode(HttpStatus.OK.value())
+                        .message("Successfully get all product")
+                        .data(productResponses.getContent())
+                        .paging(pagingResponse)
+                        .build());
+    }
 
     @PutMapping
     public ResponseEntity<?> updateProduct (@RequestBody Product product) {

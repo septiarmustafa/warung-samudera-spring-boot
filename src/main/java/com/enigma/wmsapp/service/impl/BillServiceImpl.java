@@ -40,9 +40,9 @@ public class BillServiceImpl implements BillService {
         }).toList();
 
         Bill bill = Bill.builder()
-                .receiptNumber("122")
+                .receiptNumber("12" + "-" + LocalDateTime.now().getYear() + "-" + "1")
                 .transDate(LocalDateTime.now())
-                .transactionType(ETransactionType.EAT_IN)
+                .transactionType(billRequest.getTransactionType())
                 .billDetail(billDetailsList)
                 .build();
         billRepository.saveAndFlush(bill);
@@ -58,6 +58,7 @@ public class BillServiceImpl implements BillService {
                     .quantity(billDetail.getQuantity())
                     .product(ProductResponse.builder()
                             .productId(currentProductPrice.getProduct().getId())
+                            .productPriceId(currentProductPrice.getProduct().getId())
                             .productName(currentProductPrice.getProduct().getProductName())
                             .productCode(currentProductPrice.getProduct().getProductCode())
                             .stock(currentProductPrice.getStock())

@@ -117,59 +117,55 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductResponse> getAllByNameOrPrice(String name, Long maxPrice, Integer page, Integer size) {
-        return null;
-    }
+        // specification untuk menentukan kriteria pencarian, disini criteria pencarian ditandakan dengan root, root yang dimaksud adalah entity product
+        Specification<Product> specification = (root, query, criteriaBuilder) -> {
+            // join digunakan untuk merelasikan antara product dan product price
+            Join<Product, ProductPrice> productPriceJoin = root.join("productPrice");
+            // predicate digunakan untuk menggunakanLIKE dimana nanti kita akan menggunakan kondisi pencarian parameter
+            // disini kita akan mencari nama produk atau harga yang sama atau harga dibawahnya, makanya menggunakan LessThanOrEquals
+            List<Predicate> predicates = new ArrayList<>();
+            if (name != null) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%" ));
+            }
+            if (maxPrice != null) {
+                predicates.add(criteriaBuilder.lessThanOrEqualTo(productPriceJoin.get("price"), maxPrice));
+            }
 
-//    @Override
-//    public Page<ProductResponse> getAllByNameOrPrice(String name, Long maxPrice, Integer page, Integer size) {
-//        // specification untuk menentukan kriteria pencarian, disini criteria pencarian ditandakan dengan root, root yang dimaksud adalah entity product
-//        Specification<Product> specification = (root, query, criteriaBuilder) -> {
-//            // join digunakan untuk merelasikan antara product dan product price
-//            Join<Product, ProductPrice> productPriceJoin = root.join("productPrice");
-//            // predicate digunakan untuk menggunakanLIKE dimana nanti kita akan menggunakan kondisi pencarian parameter
-//            // disini kita akan mencari nama produk atau harga yang sama atau harga dibawahnya, makanya menggunakan LessThanOrEquals
-//            List<Predicate> predicates = new ArrayList<>();
-//            if (name != null) {
-//                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%" ));
-//            }
-//            if (maxPrice != null) {
-//                predicates.add(criteriaBuilder.lessThanOrEqualTo(productPriceJoin.get("price"), maxPrice));
-//            }
-//
-//            // kode return mengembalikan query dimana pada dasarnya kita membangun klause where yang sudah ditentukan dari predicate atau criteria
-//            return query.where(predicates.toArray(new Predicate[]{})).getRestriction();
-//        };
-//        Pageable pageable = PageRequest.of(page, size);
-//
-//        // pageabale sebuah interface dari package spring framwork
-//        //Cara paling umum untuk membuat sebuah Pageable instance adalah dengan menggunakan PageRequest implementasi:
-//
-//        Page<Product> products = productRepository.findAll(specification,pageable);
-//        // ini digunakan untuk menyimpan response product yang baru
-//        List<ProductResponse> productResponses = new ArrayList<>();
-//        for (Product product : products.getContent()) {
-//            // for disini digunakan untuk mengiterasi daftar product yang disimpan dalam object
-//            Optional<ProductPrice> productPrice = product.getProductPrice() // optional ini untuk mencari harga yang aktif
-//                    .stream()
-//                    .filter(ProductPrice::getIsActive).findFirst();
-//            if (productPrice.isEmpty()) continue; // kondisi ini digunakan untuk memeriksa apakah productPricenya kosong atau tidak, jika kosong maka di skip
-//            Store store = productPrice.get().getStore(); // ini digunakan untuk jika harga product yang aktif ditemukan di store
-//            productResponses.add(
-//                    ProductResponse.builder()
-//                            .productId(product.getId())
-//                            .productName(product.getName())
-//                            .desc(product.getDescription())
-//                            .price(productPrice.get().getPrice())
-//                            .stock(productPrice.get().getStock())
-//                            .store(StoreResponse.builder()
-//                                    .id(store.getId())
-//                                    .name(store.getName())
-//                                    .noSiup(store.getNoSiup())
-//                                    .address(store.getAddress())
-//                                    .mobilePhone(store.getMobilePhone())
-//                                    .build())
-//                    .build());
-//        }
-//        return new PageImpl<>(productResponses, pageable, products.getTotalElements());
-//    }
+            // kode return mengembalikan query dimana pada dasarnya kita membangun klause where yang sudah ditentukan dari predicate atau criteria
+            return query.where(predicates.toArray(new Predicate[]{})).getRestriction();
+        };
+        Pageable pageable = PageRequest.of(page, size);
+
+        // pageabale sebuah interface dari package spring framwork
+        //Cara paling umum untuk membuat sebuah Pageable instance adalah dengan menggunakan PageRequest implementasi:
+
+        Page<Product> products = productRepository.findAll(specification,pageable);
+        // ini digunakan untuk menyimpan response product yang baru
+        List<ProductResponse> productResponses = new ArrayList<>();
+        for (Product product : products.getContent()) {
+            // for disini digunakan untuk mengiterasi daftar product yang disimpan dalam object
+            Optional<ProductPrice> productPrice = product.getProductPrice() // optional ini untuk mencari harga yang aktif
+                    .stream()
+                    .filter(ProductPrice::getIsActive).findFirst();
+            if (productPrice.isEmpty()) continue; // kondisi ini digunakan untuk memeriksa apakah productPricenya kosong atau tidak, jika kosong maka di skip
+            Branch branch = productPrice.get().getBranch(); // ini digunakan untuk jika harga product yang aktif ditemukan di store
+            productResponses.add(
+                    ProductResponse.builder()
+                            .productId(product.getId())
+                            .productPriceId(productPrice.get().getId())
+                            .productName(product.getProductName())
+                            .productCode(product.getProductCode())
+                            .price(productPrice.get().getPrice())
+                            .stock(productPrice.get().getStock())
+                            .branchId(BranchResponse.builder()
+                                    .branchId(branch.getBranchId())
+                                    .branchName(branch.getBranchName())
+                                    .branchCode(branch.getBranchCode())
+                                    .address(branch.getAddress())
+                                    .phoneNumber(branch.getPhoneNumber())
+                                    .build())
+                    .build());
+        }
+        return new PageImpl<>(productResponses, pageable, products.getTotalElements());
+    }
 }
