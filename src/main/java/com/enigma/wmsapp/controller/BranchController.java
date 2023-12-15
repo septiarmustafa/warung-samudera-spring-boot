@@ -8,11 +8,9 @@ import com.enigma.wmsapp.service.BranchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,12 +20,53 @@ public class BranchController {
     private final BranchService branchService;
 
     @PostMapping
-    public ResponseEntity<?> createProduct(@RequestBody Branch branch) {
+    public ResponseEntity<?> createBranch(@RequestBody Branch branch) {
         BranchResponse branchResponse = branchService.createBranch(branch);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(CommonResponse.<BranchResponse>builder()
                         .statusCode(HttpStatus.CREATED.value())
-                        .message("Successfully created new product")
+                        .message("Successfully created new branch")
                         .data(branchResponse).build());
     }
+
+    @GetMapping(value = AppPath.ID_BRANCH)
+    public ResponseEntity<?> getByIdBranch ( @PathVariable String id_branch){
+        BranchResponse branchResponse = branchService.getByIdBranch(id_branch);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(CommonResponse.builder()
+                        .statusCode(HttpStatus.OK.value())
+                        .message("Successfully get branch")
+                        .data(branchResponse).build());
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAll (){
+        List<BranchResponse> branchList = branchService.getAllBranch();
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(CommonResponse.builder()
+                        .statusCode(HttpStatus.OK.value())
+                        .message("Successfully get all")
+                        .data(branchList).build());
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateBranch (@RequestBody Branch branch) {
+        BranchResponse branches = branchService.updateBranch(branch);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(CommonResponse.builder()
+                        .statusCode(HttpStatus.OK.value())
+                        .message("Successfully update branch")
+                        .data(branches).build());
+    }
+
+    @DeleteMapping(value = AppPath.ID_BRANCH)
+    public ResponseEntity<?> deleteBranch (@PathVariable String id_branch){
+        branchService.deleteBranch(id_branch);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(CommonResponse.builder()
+                        .statusCode(HttpStatus.OK.value())
+                        .message("Successfully delete branch")
+                        .data("OK").build());
+    }
+
 }

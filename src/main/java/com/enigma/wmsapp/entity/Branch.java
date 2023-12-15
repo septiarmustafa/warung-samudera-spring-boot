@@ -26,7 +26,5 @@ public class Branch {
 
     @Column(name = "phone_number",unique = true, nullable = false, length = 20)
     private String phoneNumber;
-    @OneToOne
-    @JoinColumn (name = "user_credential_id")
-    private UserCredential userCredential;
+
 }
