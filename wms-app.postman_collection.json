@@ -1,0 +1,1121 @@
+{
+	"info": {
+		"_postman_id": "1a1c562b-b258-42fc-81a3-6920bae26f70",
+		"name": "wms-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31047423"
+	},
+	"item": [
+		{
+			"name": "Branch",
+			"item": [
+				{
+					"name": "Create Branch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"branchCode\": \"A1\",\n  \"branchName\": \"Branch Aceh\",\n  \"address\": \"Aceh\",\n  \"phoneNumber\": \"08\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/branch",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"branch"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Branch",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"branchCode\": \"A2\",\n  \"branchName\": \"Branch Abang\",\n  \"address\": \"Jakarta\",\n  \"phoneNumber\": \"087\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/branch",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"branch"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 07:00:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Successfully created new branch\",\n    \"data\": {\n        \"branchId\": \"28747246-7173-4491-add2-95acc0b1d7d2\",\n        \"branchCode\": \"A2\",\n        \"branchName\": \"Branch Abang\",\n        \"address\": \"Jakarta\",\n        \"phoneNumber\": \"087\"\n    },\n    \"paging\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get By Id Branch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/branch/e7a3345f-1c46-45fb-a1aa-d641f08ebf7b",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"branch",
+								"e7a3345f-1c46-45fb-a1aa-d641f08ebf7b"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get By Id Branch",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8081/branch/3a59f745-3afd-48f1-ba1f-247d872e975d",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"branch",
+										"3a59f745-3afd-48f1-ba1f-247d872e975d"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 07:27:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Successfully get branch\",\n    \"data\": {\n        \"branchId\": \"3a59f745-3afd-48f1-ba1f-247d872e975d\",\n        \"branchCode\": \"A2\",\n        \"branchName\": \"Branch Abang\",\n        \"address\": \"Jakarta\",\n        \"phoneNumber\": \"087\"\n    },\n    \"paging\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/branch",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"branch"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/branch",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"branch"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 07:28:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Successfully get all\",\n    \"data\": [\n        {\n            \"branchId\": \"3a59f745-3afd-48f1-ba1f-247d872e975d\",\n            \"branchCode\": \"A2\",\n            \"branchName\": \"Branch Abang\",\n            \"address\": \"Jakarta\",\n            \"phoneNumber\": \"087\"\n        }\n    ],\n    \"paging\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Branch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJXbXMgQXBwIiwic3ViIjoiYjhhMWYwOGEtMzczYy00MDNkLTlkYTEtMWFkM2NiZmI3YTJiIiwiZXhwIjoxNzAyNjI4NDM4LCJpYXQiOjE3MDI2MjQ4MzgsInJvbGUiOiJST0xFX0FETUlOIn0.OBuM8vLF76ggJtMIHDgWSOMJuyO-uYQAtZQJC0SSemU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"branchId\" : \"3a59f745-3afd-48f1-ba1f-247d872e975d\",\n  \"branchCode\": \"A2\",\n  \"branchName\": \"Branch Saya\",\n  \"address\": \"Jakarta\",\n  \"phoneNumber\": \"087\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/branch",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"branch"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Branch",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\n{\n    \"branchId\" : \"3a59f745-3afd-48f1-ba1f-247d872e975d\",\n  \"branchCode\": \"A2\",\n  \"branchName\": \"Branch Saya\",\n  \"address\": \"Jakarta\",\n  \"phoneNumber\": \"087\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/branch",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"branch"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 07:37:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Successfully update branch\",\n    \"data\": {\n        \"branchId\": \"3a59f745-3afd-48f1-ba1f-247d872e975d\",\n        \"branchCode\": \"A2\",\n        \"branchName\": \"Branch Saya\",\n        \"address\": \"Jakarta\",\n        \"phoneNumber\": \"087\"\n    },\n    \"paging\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJXbXMgQXBwIiwic3ViIjoiYjhhMWYwOGEtMzczYy00MDNkLTlkYTEtMWFkM2NiZmI3YTJiIiwiZXhwIjoxNzAyNjI4NDM4LCJpYXQiOjE3MDI2MjQ4MzgsInJvbGUiOiJST0xFX0FETUlOIn0.OBuM8vLF76ggJtMIHDgWSOMJuyO-uYQAtZQJC0SSemU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/branch/3a59f745-3afd-48f1-ba1f-247d872e975d",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"branch",
+								"3a59f745-3afd-48f1-ba1f-247d872e975d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/branch/e7a3345f-1c46-45fb-a1aa-d641f08ebf7b",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"branch",
+										"e7a3345f-1c46-45fb-a1aa-d641f08ebf7b"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 07:41:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Successfully delete branch\",\n    \"data\": \"OK\",\n    \"paging\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"tiar1\",\n    \"password\" : \"tiar123\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"tiar1\",\n    \"password\" : \"tiar123\"\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 06:52:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Successfully login\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJXbXMgQXBwIiwic3ViIjoiMTc4MzVmOWMtYjE3Ni00MDRiLWI3NDYtOGZjZjcxOWQwZTkxIiwiZXhwIjoxNzAyNjI2NzQzLCJpYXQiOjE3MDI2MjMxNDMsInJvbGUiOiJST0xFX0FETUlOIn0.XNi1Kh-R0ec7xEDwUmlZ3Hm05N2QLr_uco21JmHQNko\",\n        \"role\": \"ROLE_ADMIN\"\n    },\n    \"paging\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Register Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"tiaradmin\",\n    \"password\" : \"tiar123\",\n    \"name\" : \"tiar admin\",\n    \"mobilePhone\" : \"08080808\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/auth/admin/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"auth",
+								"admin",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"tiaradmin\",\n    \"password\" : \"tiar123\",\n    \"name\" : \"tiar admin\",\n    \"mobilePhone\" : \"08080808\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/api/auth/admin/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"auth",
+										"admin",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Dec 2023 06:50:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Successfully register\",\n    \"data\": {\n        \"username\": \"tiaradmin\",\n        \"role\": \"ROLE_ADMIN\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product and Price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create New Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productCode\" : \"K3\",\n    \"productName\" : \"Kopi Hitam\",\n    \"price\" : \"15000\",\n    \"stock\" : 10,\n    \"branchId\" : {\n        \"id\" : \"b349fb91-5388-4e54-8708-5c5d4a0fb85f\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 09:04:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Successfully created new product\",\n    \"data\": {\n        \"productId\": \"7a59b0f4-b1d7-4c0a-a91e-5ec7626e9856\",\n        \"productPriceId\": \"cc46523d-d8a0-4eba-92c0-d79039e9d28f\",\n        \"productCode\": \"K3\",\n        \"productName\": \"Kopi Hitam\",\n        \"price\": 15000,\n        \"stock\": 10,\n        \"branchId\": {\n            \"branchId\": \"b349fb91-5388-4e54-8708-5c5d4a0fb85f\",\n            \"branchCode\": \"A1\",\n            \"branchName\": \"Branch Aceh\",\n            \"address\": \"Aceh\",\n            \"phoneNumber\": \"08\"\n        }\n    },\n    \"paging\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJXbXMgQXBwIiwic3ViIjoiYjhhMWYwOGEtMzczYy00MDNkLTlkYTEtMWFkM2NiZmI3YTJiIiwiZXhwIjoxNzAyNjM0MzcyLCJpYXQiOjE3MDI2MzA3NzIsInJvbGUiOiJST0xFX0FETUlOIn0.7pOfokfQoUP5TZcunlmbAZ0LQFoPWQeWxR08ZeXQ_I4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/products/page?page=0",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"products",
+										"page"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Dec 2023 12:15:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Successfully get all product\",\n    \"data\": [\n        {\n            \"productId\": \"c761e883-98ab-40ae-b9f7-b7233a2ef6b8\",\n            \"productPriceId\": \"4493e9f7-5edd-4e89-908a-4dd20209f6b2\",\n            \"productCode\": \"K1\",\n            \"productName\": \"Kopi\",\n            \"price\": 15000,\n            \"stock\": 10,\n            \"branchId\": {\n                \"branchId\": \"b349fb91-5388-4e54-8708-5c5d4a0fb85f\",\n                \"branchCode\": \"A1\",\n                \"branchName\": \"Branch Aceh\",\n                \"address\": \"Aceh\",\n                \"phoneNumber\": \"08\"\n            }\n        },\n        {\n            \"productId\": \"ced03d7b-068d-4579-bff8-d1bdcbf7b164\",\n            \"productPriceId\": \"d849bcb5-268d-48bf-b180-d1b4ae17422d\",\n            \"productCode\": \"K2\",\n            \"productName\": \"Kopi Manis\",\n            \"price\": 15000,\n            \"stock\": 10,\n            \"branchId\": {\n                \"branchId\": \"b349fb91-5388-4e54-8708-5c5d4a0fb85f\",\n                \"branchCode\": \"A1\",\n                \"branchName\": \"Branch Aceh\",\n                \"address\": \"Aceh\",\n                \"phoneNumber\": \"08\"\n            }\n        },\n        {\n            \"productId\": \"7a59b0f4-b1d7-4c0a-a91e-5ec7626e9856\",\n            \"productPriceId\": \"cc46523d-d8a0-4eba-92c0-d79039e9d28f\",\n            \"productCode\": \"K3\",\n            \"productName\": \"Kopi Hitam\",\n            \"price\": 15000,\n            \"stock\": 6,\n            \"branchId\": {\n                \"branchId\": \"b349fb91-5388-4e54-8708-5c5d4a0fb85f\",\n                \"branchCode\": \"A1\",\n                \"branchName\": \"Branch Aceh\",\n                \"address\": \"Aceh\",\n                \"phoneNumber\": \"08\"\n            }\n        }\n    ],\n    \"paging\": {\n        \"currentPage\": 0,\n        \"totalPage\": 1,\n        \"size\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/products/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Create Bill",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionType\": \"EAT IN\",\n  \"billDetails\": [\n    {\n      \"productPriceId\": \"cc46523d-d8a0-4eba-92c0-d79039e9d28f\",\n      \"quantity\": \"1\"\n    }\n\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
