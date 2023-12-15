@@ -1,14 +1,14 @@
 package com.enigma.wmsapp.service;
 
+import com.enigma.wmsapp.dto.response.BranchResponse;
+import com.enigma.wmsapp.entity.Branch;
+
 import java.util.List;
 
-public class BranchService {
-//    AdminResponse create (Admin admin);
-//
-//    AdminResponse getById (String id);
-//
-//    List<AdminResponse> getAllAdmin();
-//
-//    AdminResponse updateAdmin (AdminRequest adminRequest);
-//    void deleteAdmin (String id);
+public interface BranchService {
+    BranchResponse createBranch (Branch branch);
+    BranchResponse getByIdBranch (String id);
+    List<BranchResponse> getAllBranch();
+    BranchResponse updateBranch (Branch branch);
+    void deleteBranch (String id);
 }

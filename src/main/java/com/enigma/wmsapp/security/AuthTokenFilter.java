@@ -1,6 +1,7 @@
 package com.enigma.wmsapp.security;
 
 
+import com.enigma.wmsapp.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import java.util.Map;
 public class AuthTokenFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
+    private final UserService userService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try{
@@ -31,10 +33,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             }
             if (token != null && jwtUtil.verifyJwtToken(token)){
                 Map<String, String> userInfo = jwtUtil.getUserInfoByToken(token);
-//                UserDetails user = userService.loadUserByUserId(userInfo.get("userId"));
-//                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-//                authenticationToken.setDetails(new WebAuthenticationDetailsSource());
-//                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                UserDetails user = userService.loadUserByUserId(userInfo.get("userId"));
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                authenticationToken.setDetails(new WebAuthenticationDetailsSource());
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         } catch (Exception e) {
             System.out.println( e.getMessage());

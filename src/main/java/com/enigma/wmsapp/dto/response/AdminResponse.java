@@ -1,4 +1,5 @@
-package com.enigma.wmsapp.dto.request;
+package com.enigma.wmsapp.dto.response;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class AuthRequest {
-    private String username;
-    private String password;
+public class AdminResponse {
+    private String id;
     private String name;
-    private String address;
     private String phoneNumber;
-    private String email;
 }

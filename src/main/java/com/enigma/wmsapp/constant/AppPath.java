@@ -10,5 +10,7 @@ public class AppPath {
     public final static String BRANCH = "/branch";
     public final static String PRODUCTS = "/products";
     public final static String TRANSACTIONS = "/transactions";
+    public final static String ADMIN = "/admin";
+
 
 }
