@@ -66,8 +66,8 @@ public class ProductController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateProduct (@RequestBody Product product) {
-        ProductResponse productResponse = productService.updateProduct(product);
+    public ResponseEntity<?> updateProduct (@RequestBody ProductRequest productRequest) {
+        ProductResponse productResponse = productService.updateProduct(productRequest);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(CommonResponse.builder()
                         .statusCode(HttpStatus.OK.value())

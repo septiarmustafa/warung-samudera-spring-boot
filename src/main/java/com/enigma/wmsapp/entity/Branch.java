@@ -3,6 +3,8 @@ package com.enigma.wmsapp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "m_branch")
 @Getter
@@ -26,5 +28,8 @@ public class Branch {
 
     @Column(name = "phone_number",unique = true, nullable = false, length = 20)
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "branch")
+    private List<ProductPrice> productPrice;
 
 }

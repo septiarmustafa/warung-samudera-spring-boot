@@ -34,5 +34,6 @@ public class ProductPrice {
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
+    @JsonBackReference
     private Branch branch;
 }

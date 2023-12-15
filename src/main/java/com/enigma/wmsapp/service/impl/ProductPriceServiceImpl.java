@@ -17,8 +17,18 @@ public class ProductPriceServiceImpl implements ProductPriceService {
     }
 
     @Override
+    public ProductPrice createOrUpdate(ProductPrice productPrice) {
+        return productPrice.getId() == null ? productPriceRepository.save(productPrice) : productPriceRepository.saveAndFlush(productPrice);
+    }
+
+    @Override
     public ProductPrice getById(String id) {
         return productPriceRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public void delete(String id) {
+        productPriceRepository.deleteById(id);
     }
 
 }

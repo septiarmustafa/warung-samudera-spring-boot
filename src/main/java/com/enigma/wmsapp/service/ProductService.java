@@ -13,7 +13,7 @@ public interface ProductService {
 
     List<Product> getAllProduct ();
 
-    ProductResponse updateProduct (Product product);
+    ProductResponse updateProduct (ProductRequest productRequest);
     void deleteProduct (String id);
 
     ProductResponse createProductAndProductPrice (ProductRequest productRequest);

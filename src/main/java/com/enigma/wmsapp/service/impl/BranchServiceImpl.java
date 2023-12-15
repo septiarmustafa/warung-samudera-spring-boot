@@ -2,12 +2,15 @@ package com.enigma.wmsapp.service.impl;
 
 import com.enigma.wmsapp.dto.response.BranchResponse;
 import com.enigma.wmsapp.entity.Branch;
+import com.enigma.wmsapp.entity.ProductPrice;
 import com.enigma.wmsapp.repository.BranchRepository;
 import com.enigma.wmsapp.service.BranchService;
+import com.enigma.wmsapp.service.ProductPriceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,6 +18,8 @@ import java.util.stream.Collectors;
 public class BranchServiceImpl implements BranchService {
 
     private final BranchRepository branchRepository;
+    private final ProductPriceService productPriceService;
+
 
     @Override
     public BranchResponse createBranch(Branch branch) {
@@ -27,6 +32,7 @@ public class BranchServiceImpl implements BranchService {
                 .phoneNumber(branches.getPhoneNumber())
                 .build();
     }
+
     @Override
     public BranchResponse getByIdBranch(String id) {
         Branch branch = branchRepository.findById(id).orElse(null);
@@ -73,8 +79,20 @@ public class BranchServiceImpl implements BranchService {
                 .build();
 
     }
+
     @Override
     public void deleteBranch(String id) {
-        branchRepository.deleteById(id);
+        Optional<Branch> optionalBranch = branchRepository.findById(id);
+        if (optionalBranch.isPresent()) {
+            Branch branch = optionalBranch.get();
+
+            List<ProductPrice> productPrices = branch.getProductPrice();
+
+            for (ProductPrice productPrice : productPrices) {
+                productPriceService.delete(productPrice.getId());
+            }
+            branchRepository.deleteById(id);
+        }
     }
+
 }

@@ -58,23 +58,65 @@ public class ProductServiceImpl implements ProductService {
                         .build())
                 .collect(Collectors.toList());
     }
-
     @Override
-    public ProductResponse updateProduct(Product product) {
-        Product products = productRepository.findById(product.getId()).orElse(null);
-        if (products == null) return null;
-        productRepository.save(products);
-        return ProductResponse.builder()
-                .productId(product.getId())
-                .productName(product.getProductName())
-                .productCode(product.getProductCode())
-                .build();
+    public ProductResponse updateProduct(ProductRequest productRequest) {
+        BranchResponse branchResponse = branchService.getByIdBranch(productRequest.getBranchId().getId());
+
+        Optional<Product> optionalProduct = productRepository.findById(productRequest.getProductId());
+
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+
+            product.setProductCode(productRequest.getProductCode());
+            product.setProductName(productRequest.getProductName());
+
+            productRepository.save(product);
+
+            ProductPrice productPrice = product.getProductPrice().isEmpty()
+                    ? new ProductPrice()
+                    : product.getProductPrice().get(0);
+
+            productPrice.setPrice(productRequest.getPrice());
+            productPrice.setIsActive(true);
+            productPrice.setBranch(Branch.builder().branchId(branchResponse.getBranchId()).build());
+            productPrice.setProduct(product);
+
+            productPriceService.createOrUpdate(productPrice);
+
+            return ProductResponse.builder()
+                    .productId(product.getId())
+                    .productPriceId(productPrice.getId())
+                    .productCode(product.getProductCode())
+                    .productName(product.getProductName())
+                    .price(productPrice.getPrice())
+                    .stock(productPrice.getStock())
+                    .branchId(BranchResponse.builder()
+                            .branchId(branchResponse.getBranchId())
+                            .branchCode(branchResponse.getBranchCode())
+                            .branchName(branchResponse.getBranchName())
+                            .address(branchResponse.getAddress())
+                            .phoneNumber(branchResponse.getPhoneNumber())
+                            .build())
+                    .build();
+        } else {
+            return null;
+        }
+
     }
 
     @Override
     public void deleteProduct(String id) {
-        productRepository.deleteById(id);
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            List<ProductPrice> productPrices = product.getProductPrice();
+            for (ProductPrice productPrice : productPrices) {
+                productPriceService.delete(productPrice.getId());
+            }
+            productRepository.deleteById(id);
+        }
     }
+
 
     @Transactional(rollbackOn = Exception.class)
     @Override
@@ -117,12 +159,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductResponse> getAllByNameOrPrice(String name, Long maxPrice, Integer page, Integer size) {
-        // specification untuk menentukan kriteria pencarian, disini criteria pencarian ditandakan dengan root, root yang dimaksud adalah entity product
         Specification<Product> specification = (root, query, criteriaBuilder) -> {
-            // join digunakan untuk merelasikan antara product dan product price
             Join<Product, ProductPrice> productPriceJoin = root.join("productPrice");
-            // predicate digunakan untuk menggunakanLIKE dimana nanti kita akan menggunakan kondisi pencarian parameter
-            // disini kita akan mencari nama produk atau harga yang sama atau harga dibawahnya, makanya menggunakan LessThanOrEquals
+
             List<Predicate> predicates = new ArrayList<>();
             if (name != null) {
                 predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%" ));
@@ -130,25 +169,18 @@ public class ProductServiceImpl implements ProductService {
             if (maxPrice != null) {
                 predicates.add(criteriaBuilder.lessThanOrEqualTo(productPriceJoin.get("price"), maxPrice));
             }
-
-            // kode return mengembalikan query dimana pada dasarnya kita membangun klause where yang sudah ditentukan dari predicate atau criteria
             return query.where(predicates.toArray(new Predicate[]{})).getRestriction();
         };
         Pageable pageable = PageRequest.of(page, size);
 
-        // pageabale sebuah interface dari package spring framwork
-        //Cara paling umum untuk membuat sebuah Pageable instance adalah dengan menggunakan PageRequest implementasi:
-
         Page<Product> products = productRepository.findAll(specification,pageable);
-        // ini digunakan untuk menyimpan response product yang baru
         List<ProductResponse> productResponses = new ArrayList<>();
         for (Product product : products.getContent()) {
-            // for disini digunakan untuk mengiterasi daftar product yang disimpan dalam object
-            Optional<ProductPrice> productPrice = product.getProductPrice() // optional ini untuk mencari harga yang aktif
+            Optional<ProductPrice> productPrice = product.getProductPrice()
                     .stream()
                     .filter(ProductPrice::getIsActive).findFirst();
-            if (productPrice.isEmpty()) continue; // kondisi ini digunakan untuk memeriksa apakah productPricenya kosong atau tidak, jika kosong maka di skip
-            Branch branch = productPrice.get().getBranch(); // ini digunakan untuk jika harga product yang aktif ditemukan di store
+            if (productPrice.isEmpty()) continue;
+            Branch branch = productPrice.get().getBranch();
             productResponses.add(
                     ProductResponse.builder()
                             .productId(product.getId())
